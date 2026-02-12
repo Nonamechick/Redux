@@ -3,6 +3,7 @@ const createStore=redux.createStore;
 const combineReducers = redux.combineReducers; 
 const reduxLogger = require('redux-logger');
 const logger = reduxLogger.createLogger();
+const applyMiddleWare = redux.applyMiddleware;
 const ORDER_PIZZA = 'ORDER_PIZZA';
 const ORDER_BURGER = 'ORDER_BURGER'
 function orderPizza() {
@@ -51,17 +52,14 @@ const rootReducer = combineReducers({
     pizza:reducerPizza,
     burger:reducerBurger
 }); 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleWare(logger));
 
 
-console.log('Initial state',store.getState());
+//console.log('Initial state',store.getState());
 
-const unsubscribe = store.subscribe(()=>console.log("Updated state", store.getState()));
+const unsubscribe = store.subscribe(()=>{});
 
 
-store.dispatch(orderPizza());
-store.dispatch(orderPizza());
-store.dispatch(orderPizza());
 store.dispatch(orderPizza());
 store.dispatch(orderPizza());
 store.dispatch(orderBurger());
