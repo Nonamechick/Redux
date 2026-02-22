@@ -5,5 +5,10 @@ const ProductsContainer = () => {
     <div>ProductsContainer</div>
   )
 }
+const mapStateToProps=state=>{
+    return {
+        productsData:state.product
+    }
+}
 
 export default ProductsContainer

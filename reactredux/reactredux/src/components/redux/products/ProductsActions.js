@@ -1,4 +1,5 @@
-import { FETCH_ERROR, FETCH_REQUEST, FETCH_SUCCESS } from "./ProductsTypes"
+import { FETCH_ERROR, FETCH_REQUEST, FETCH_SUCCESS } from "./ProductsTypes";
+import axios from 'axios';
 
 export const fetchRequest=()=>{
     return {
