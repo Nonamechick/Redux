@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import {connect} from 'react-redux';
+import { fetchProducts } from './redux';
 
-const ProductsContainer = () => {
+const ProductsContainer = ({productsData,fetchProducts}) => {
+    //console.log(props);
+    useEffect(()=>{
+      fetchProducts()
+    },[])
   return (
-    <div>ProductsContainer</div>
+    <div>
+      {productsData.loading && <p>Loading...</p>}
+      {productsData.error && <p>{productsData.error}</p>}
+      {productsData.products && <p>{productsData.products.map(title=><p>{title}</p>)}</p>}
+    </div>
   )
 }
 const mapStateToProps=state=>{
@@ -10,5 +20,10 @@ const mapStateToProps=state=>{
         productsData:state.product
     }
 }
+const mapDispatchToProps=dispatch=>{
+  return {
+    fetchProducts:()=>dispatch(fetchProducts())
+  }
+}
 
-export default ProductsContainer
+export default connect(mapStateToProps,mapDispatchToProps)(ProductsContainer);
