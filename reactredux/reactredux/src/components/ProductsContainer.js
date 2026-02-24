@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react';
-import {connect} from 'react-redux';
+//import {connect} from 'react-redux';
 import { fetchProducts } from './redux';
+import {useDispatch, useSelector} from 'react-redux';
 
-const ProductsContainer = ({productsData,fetchProducts}) => {
+              // {productsData,fetchProducts} it was inside productscontainer
+const ProductsContainer = () => {
     //console.log(props);
+    const productsData = useSelector(state=>state.product);
+    const dispatch = useDispatch();
     useEffect(()=>{
-      fetchProducts()
+      //fetchProducts()
+      dispatch(fetchProducts())
     },[])
   return (
     <div>
@@ -15,15 +20,16 @@ const ProductsContainer = ({productsData,fetchProducts}) => {
     </div>
   )
 }
-const mapStateToProps=state=>{
-    return {
-        productsData:state.product
-    }
-}
-const mapDispatchToProps=dispatch=>{
-  return {
-    fetchProducts:()=>dispatch(fetchProducts())
-  }
-}
+// const mapStateToProps=state=>{
+//     return {
+//         productsData:state.product
+//     }
+// }
+// const mapDispatchToProps=dispatch=>{
+//   return {
+//     fetchProducts:()=>dispatch(fetchProducts())
+//   }
+// }
 
-export default connect(mapStateToProps,mapDispatchToProps)(ProductsContainer);
+// export default connect(mapStateToProps,mapDispatchToProps)(ProductsContainer);
+export default ProductsContainer;
