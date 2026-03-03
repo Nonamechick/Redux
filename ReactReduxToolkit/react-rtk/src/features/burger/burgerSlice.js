@@ -1,9 +1,9 @@
 import {createSlice} from '@reduxjs/toolkit';
 import { pizza_order as pizzaOrdered } from '../pizza/pizzaSlice';
 
-const createSlice = require('@reduxjs/toolkit').createSlice;
+//const createSlice = require('@reduxjs/toolkit').createSlice;
 const initialState = {
-    burgerBase: 100
+    burgerBase: 666
 }
 const burgerSlice = createSlice({
     name:'burger',
